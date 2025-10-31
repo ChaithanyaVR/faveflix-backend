@@ -15,6 +15,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
+      "https://faveflix-monorepo.vercel.app",
       "https://faveflix-monorepo-bdy1h56tw-chaithanya-vrs-projects.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
