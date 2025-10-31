@@ -157,10 +157,14 @@ router.put("/:id", async (req, res) => {
     if (!parsed.success) {
       return res.status(400).json({ success: false, errors: formatZodError(parsed.error) });
     }
+    const data = parsed.data;
 
     const updated = await prisma.favorite.updateMany({
       where: { id, userId },
-      data: parsed.data
+      data: {
+        ...data,
+        type: data.type as Prisma.FavoriteType
+      }
     });
 
     if (!updated.count) {
@@ -189,9 +193,14 @@ router.patch("/:id", async (req, res) => {
       return res.status(400).json({ success: false, errors: formatZodError(parsed.error) });
     }
 
+    const data = parsed.data;
+
     const updated = await prisma.favorite.updateMany({
       where: { id, userId },
-      data: parsed.data
+      data: {
+        ...data,
+        ...(data.type && { type: data.type as Prisma.FavoriteType })
+      }
     });
 
     if (!updated.count) {
