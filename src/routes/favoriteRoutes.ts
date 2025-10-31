@@ -106,16 +106,16 @@ const searchTerm = search.trim();
 
 const where: Prisma.FavoriteWhereInput = {
   userId,
-  ...(typeParam !== "all" ? { type: typeParam as "movie" | "show" } : {}),
+  ...(typeParam !== "all" ? { type: typeParam as any } : {}),
   ...(searchTerm
     ? {
         title: {
-          contains: searchTerm,
-          mode: "insensitive"
+          contains: searchTerm
         }
       }
     : {}),
 };
+
 
 
 
