@@ -106,7 +106,7 @@ const searchTerm = search.trim();
 
 const where: Prisma.FavoriteWhereInput = {
   userId,
-  ...(typeParam !== "all" ? { type: typeParam as any } : {}),
+  ...(typeParam !== "all" ? { type: typeParam as any } : {}), 
   ...(searchTerm
     ? {
         title: {
@@ -163,7 +163,7 @@ router.put("/:id", async (req, res) => {
       where: { id, userId },
       data: {
         ...data,
-        type: data.type as Prisma.FavoriteType
+        type: data.type as any 
       }
     });
 
@@ -199,7 +199,7 @@ router.patch("/:id", async (req, res) => {
       where: { id, userId },
       data: {
         ...data,
-        ...(data.type && { type: data.type as Prisma.FavoriteType })
+        ...(data.type && { type: data.type as any }) 
       }
     });
 
